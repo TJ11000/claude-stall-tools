@@ -7,23 +7,41 @@ Everyone's racing to *generate* more with AI. Meanwhile the layer that's suppose
 the agent on the rails — tool calls, context, turn-taking — sometimes quietly breaks: the
 model stalls after a tool call, leaks raw tool markup instead of running it, or fabricates
 a result (or a whole answer) that was never really there. You can't fix that from your
-side; the cause is upstream. But you can **see it** and **contain it.**
+side; the cause is upstream. But you can **see it**, **contain it**, and **handle the mess
+it leaves.**
 
-This repo is two pieces:
+That's how this repo is organized:
 
-- **`stall_scan.py`** — *see it.* Scans your session transcripts after the fact and shows
-  where the stall fingerprints actually showed up.
-- **the "seatbelt" CLAUDE.md snippet** — *contain it.* A runtime, non-coercive instruction
-  that turns the dangerous failure (model barrels ahead on missing context) into the safe
-  one (model stops and flags it). →
+### See it
+- **`stall_scan.py`** — scans your session transcripts after the fact and shows where the
+  stall fingerprints actually showed up, with timestamps. A detector, not a fix.
+
+### Contain it
+- **the "seatbelt" CLAUDE.md snippet** — a runtime, non-coercive instruction that turns
+  the dangerous failure (model barrels ahead on missing context) into the safe one (model
+  stops and flags it). →
   [seatbelt write-up + snippet](https://gist.github.com/TJ11000/85cf292f65697921b8b2f607c81844a2)
+- **[`BRACKET_VALVE.md`](BRACKET_VALVE.md)** — a convention for a *different*, quieter
+  failure that shows up in normal use: a flat guess that hardens into a "fact" the model
+  later defends by fabricating sources. Marking unverified values in brackets gives a later
+  turn a clean lever to retract instead of compounding. Like a vaccine — it won't fully
+  prevent fabrication, it may reduce how bad it gets. A hypothesis with a small
+  observation behind it, not a measured fix — read the limits in
+  [`BRACKET_VALVE.md`](BRACKET_VALVE.md) before relying on it.
 
-Neither is a fix. They're instruments: measure the breakage, make the failure louder and
-cheaper to catch. **Not a fix — just a seatbelt and a dashcam.**
+### Handle it
+- **[`SAFE_READING.md`](SAFE_READING.md)** — once a session *has* broken, reading the
+  wrecked transcript to "continue from where it stopped" can spread the corruption to the
+  agent that reads it. This is a method for reading and handing off a broken session
+  without catching the wreck yourself. Method only, honest limits.
+
+Nothing here is a fix. They're instruments: measure the breakage, make the failure louder
+and cheaper to catch, and keep a broken session from infecting the next one. **Not a fix —
+just a seatbelt, a dashcam, and a way to clean up.**
 
 > **Unofficial, third-party. Not affiliated with or endorsed by Anthropic.** These are
-> best-effort heuristics and conventions, not guarantees — read the limits before trusting
-> either one.
+> best-effort heuristics and conventions, not guarantees — read the limits in each file
+> before trusting it.
 
 ---
 
@@ -92,4 +110,3 @@ CC BY 4.0 — free to use, modify, and redistribute, **with attribution**
 (TJ, https://github.com/TJ11000). See [`LICENSE`](LICENSE).
 
 Free, and staying free. No catch, nothing gated.
-</content>
