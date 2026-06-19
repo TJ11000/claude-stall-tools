@@ -29,6 +29,14 @@ That's how this repo is organized:
   observation behind it, not a measured fix — read the limits in
   [`BRACKET_VALVE.md`](BRACKET_VALVE.md) before relying on it.
 
+- **[`PRESSURE_LAYERING.md`](PRESSURE_LAYERING.md)** — a step back from the bracket
+  valve: *where* you put the hard rules changes whether the model fabricates. Keep the
+  always-loaded base low-pressure (norms the model already knows, stated as understood —
+  not commands it's ordered to obey at every step), and push strict constraints *down* to
+  the per-task layer that can actually check them. Same caveat as the rest: a hypothesis
+  with a small, single-model observation behind it, not a measured fix — read the limits
+  inside.
+
 ### Handle it
 - **[`SAFE_READING.md`](SAFE_READING.md)** — once a session *has* broken, reading the
   wrecked transcript to "continue from where it stopped" can spread the corruption to the
