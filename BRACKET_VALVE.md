@@ -7,6 +7,8 @@ This is a companion to the seatbelt snippet in this repo. The seatbelt is for th
 quieter failure that shows up in **normal, healthy use**: a guess that hardens into a
 "fact" the model then defends.
 
+*(For the bigger picture — *where* you put the pressure in your instructions, and why this bracket convention holds on a low-pressure base but can give false safety under a heavy-handed one — see [PRESSURE_LAYERING.md](PRESSURE_LAYERING.md).)*
+
 ## The failure
 
 In a long conversation the model sometimes offers a guess — a number, a name, a
