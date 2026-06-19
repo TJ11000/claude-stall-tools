@@ -37,6 +37,16 @@ source") instead of fabricating one to stay consistent.
 You're not trying to make the model more accurate in the moment. You're trying to
 stop a single soft guess from snowballing across turns.
 
+## Why brackets, and not a warning
+
+An alarm-style marker — `⚠️`, `CAUTION`, `UNVERIFIED!` — makes both the writer and
+the reader tense up before they even reach the content. The goal here is the opposite:
+flag the guess quietly, not sound a siren. Square brackets are neutral and low-key
+enough that whoever is writing (you or the model) can drop them in mid-sentence without
+breaking the flow. The lighter the flag, the more likely it actually gets used — a loud
+warning tends to be reserved for "real" alarms and skipped the rest of the time, which
+is exactly when a soft guess slips through unmarked.
+
 ## A snippet you can drop in CLAUDE.md
 
 ```markdown
@@ -51,10 +61,11 @@ hide guesses). It asks the model to *label* the guess so a future turn can let i
 
 ## What we actually saw
 
-We ran a small, informal side-by-side (4 runs per condition, temperatures varied) on a
-smaller, more fabrication-prone model (not Claude), holding everything constant except
-one thing: whether guesses were marked with the bracket convention or not. Same
-question, same follow-ups.
+We ran a small, informal side-by-side (4 runs per condition, temperature varied across
+runs to check the pattern wasn't a single-temperature fluke) on a smaller, more
+fabrication-prone model (not Claude), holding everything constant except one thing:
+whether guesses were marked with the bracket convention or not. Same question, same
+follow-ups.
 
 - **Without the convention:** the model's early flat guess got defended in the
   follow-up turn by inventing supporting sources — fabrication compounding across
