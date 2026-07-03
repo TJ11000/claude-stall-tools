@@ -78,6 +78,39 @@ follow-ups.
 
 A side signal: under the convention even the *first* guess tended to be tamer.
 
+## Compaction can strip the valve (added 2026-07)
+
+We found a hole, so we're reporting it. When a long session hits **context
+compaction** (the conversation gets summarized so work can continue), the
+brackets can get stripped. [Our read is that the summarizer treats them as
+*style*, not as meaning — inferred from the output; we can't observe the
+summarizer directly.]
+
+What we observed — all of it from **one session**, so every count below is a
+single data point, not a rate: right before compaction we listed the session's
+seven bracketed guesses, then inspected the summary that came out the other side.
+
+- Five of the seven simply **vanished** from the summary. Annoying, but safe —
+  a dropped guess can't be defended.
+- One survived with its meaning intact but the brackets gone — it happened to be
+  phrased as an open task, so the "unverified" sense rode along by luck, not by
+  convention.
+- One item came back **worse than dropped**: `[fee assumption — unverified]`
+  survived as a flat, confident fee figure. The content was kept; the "this is a
+  guess" label was not. The next session inherits it as an established fact, with
+  the provenance gone — a laundered guess, which is exactly the failure this whole
+  file exists to prevent, now performed by the summarizer instead of the model.
+
+So treat the valve as a **within-session** brake. In our one observation it did
+not cross the compaction boundary — the summarizer is a second writer, and
+nothing obliges it to honor the convention.
+
+The mitigation is boring and it works: **brackets only persist in files.** If a
+bracketed guess matters beyond the current session, write it to a file (notes,
+a decision log, wherever) *before* compaction — files don't go through the
+summarizer. In the same session where the summary laundered the fee guess, the
+bracketed predictions we had written into files came through byte-for-byte.
+
 ## Limits — read these
 
 - **This is not a fix, and not proof.** It's a convention with a small,
@@ -92,6 +125,9 @@ A side signal: under the convention even the *first* guess tended to be tamer.
   content that was wrong or injected from the very first token.
 - It only helps if the model (or you) actually marks the guess. An unmarked guess is
   back to square one.
+- The brackets may not survive context compaction — the summarizer can strip the
+  label and keep the content as a flat fact (see the section above; n=1). Persist
+  bracketed guesses to files if they need to outlive the session.
 
 *Not an engineer — I just tinker with my bikes. Same with Claude Code: it breaks,
 "let's have a look," I describe it and say "go," Claude does the rest. This file
