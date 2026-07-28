@@ -43,6 +43,13 @@ That's how this repo is organized:
   agent that reads it. This is a method for reading and handing off a broken session
   without catching the wreck yourself. Method only, honest limits.
 
+### The whole file, not just the snippets
+- **[`low-pressure-claude-md`](https://github.com/TJ11000/low-pressure-claude-md)** (separate
+  repo) — the ideas above as a *complete working* `CLAUDE.md`: the real always-loaded
+  instruction file written as a character sheet instead of a rulebook, the recipe for
+  converting one, and an honest record of what did and didn't happen when it ran. If
+  `PRESSURE_LAYERING.md` is the *why*, that's the *here's the actual file*.
+
 Nothing here is a fix. They're instruments: measure the breakage, make the failure louder
 and cheaper to catch, and keep a broken session from infecting the next one. **Not a fix —
 just a seatbelt, a dashcam, and a way to clean up.**
